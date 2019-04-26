@@ -1,17 +1,24 @@
 <?php 
    //https://www.php.net/manual/en/function.isset.php
     // isset — Determine if a variable is declared and is different than NULL
-    if(isset($_GET["submit"])){
+    /*if(isset($_GET["submit"])){
         echo $_GET["email"];
         echo $_GET["title"];
         echo $_GET["ingredients"];
+    }*/
 
+
+    if(isset($_POST["submit"])){
+        echo $_POST["email"];
+        echo $_POST["title"];
+        echo $_POST["ingredients"];
     }
 ?>
-<?php include("templates/header.php");?>
+
+<?php include("templates/header.php"); ?>
 <section class="container grey-text">
     <h2 class="center">Add a team</h2>
-    <form action="add.php" method="GET" class="white">
+    <form action="add.php" method="POST" class="white">
         <label>Your mail: </label>
         <input type="text" name="email">
 
