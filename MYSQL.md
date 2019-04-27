@@ -91,3 +91,18 @@ INSERT INTO customers(firstName, lastName, email, address, city, state, zipcode)
 ```SELECT * FROM customers WHERE city LIKE '%a%';```
 ### any city that has no a in it
 ```SELECT * FROM customers WHERE city NOT LIKE '%a%';```
+
+
+
+$ Creating db with GUI
+
+![database main screenshots](db_Copy.png)
+
+![database screenshots](db.png)
+
+ 1. From **PHPMyAdmin** -> database -> create database -> dbname -> create
+ 2. make a table name -> click on table
+ 3. From the screenshots above -> Name -> property name
+ 4. type is the type of property that is 
+ 5. setting cerrent time
+ 6. A_I Comments -> for auto increments id when update
