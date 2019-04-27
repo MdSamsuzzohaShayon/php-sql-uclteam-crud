@@ -1,12 +1,12 @@
 [youtube tutorials](https://www.youtube.com/watch?v=nWeW3sCmD2k&t=52s)
 
-###creating database 
+### creating database 
 ```CREATE DATABASE dbName;```
 
-###deleting database 
+### deleting database 
 ```DROP DATABASE dbName;```
 
-###creating table 
+### creating table 
  - go to database
 ```
 CREATE TABLE customers(
