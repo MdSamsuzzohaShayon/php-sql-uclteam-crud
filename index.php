@@ -59,6 +59,13 @@
                 </div>
             </div>
             <?php } ?>
+
+            <!-- WE CAN GIVE COLON AND ENDIF TAG INSTAD OF } THIS BRACKETS -->
+            <?php if(count($team) >= 2 ):?>
+                <p>There are two or more team</p>
+            <?php else: ?>
+                <p>There are less than two team</p>
+            <?php endif; ?>
         </div>
     </div>
 <?php include("templates/footer.php"); ?>
