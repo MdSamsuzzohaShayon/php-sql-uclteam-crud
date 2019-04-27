@@ -11,4 +11,7 @@ There are three step
  1. construct the query
  2. make the query
  3. fetch the query
- 
+
+## Explode function 
+
+[Function referance](https://www.php.net/manual/en/function.explode.php)

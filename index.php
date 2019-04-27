@@ -28,6 +28,11 @@
     mysqli_close($conn);
 
     // print_r($team);
+
+    // SPLITE IN THE STRING WITH EXPLODE FUNCTION
+    // https://www.php.net/manual/en/function.explode.php
+    // print_r(explode(',', $team[0]['players']));
+    
 ?>
 
 
@@ -40,7 +45,12 @@
                 <div class="card z-depth-0">
                     <div class="card-content center">
                         <h6> <?php echo htmlspecialchars($t['title']); ?> </h6>
-                        <div><?php echo htmlspecialchars($t['players']); ?></div>
+                        <!-- <div><?php //echo htmlspecialchars($t['players']); ?></div> -->
+                        <ul>
+                            <?php foreach(explode(',', $t['players']) as $p){ ?>
+                            <li><?php echo htmlspecialchars($p) ?></li>
+                            <?php } ?>
+                        </ul>
                     </div>
                     <div class="card-action right-align">
                         <a href="#" class="brand-text">More Info</a>
