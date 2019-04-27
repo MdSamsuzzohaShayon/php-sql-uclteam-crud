@@ -20,9 +20,17 @@
         margin: 20px auto;
         padding: 20px;
     }
+    #showcase{
+        height: 100vh;
+        width: 100%;
+        background-image: url(nature-water-waterway-river-reflection-town-1587799-pxhere.com.jpg);
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
     </style>
 </head>
-<body class="grey lighten-4">
+<body class="grey lighten-4" id="showcase">
     <nav class="white z-depth-0">
         <div class="container">
             <a href="#" class="brand-logo brand-text">Football</a>
