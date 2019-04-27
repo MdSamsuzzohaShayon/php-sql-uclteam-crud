@@ -6,7 +6,8 @@ deleting database ```DROP DATABASE dbName;```
 
 creating table 
  - go to database
-    ```CREATE TABLE customers(
+    ```
+    CREATE TABLE customers(
         id INT NOT NULL AUTO_INCREMENT, 
         firstName VARCHAR(255),
         lastName VARCHAR(255),
@@ -16,7 +17,8 @@ creating table
         state VARCHAR(255),
         zipcode VARCHAR(255),
         PRIMARY KEY(id)
-    );```
+    );
+    ```
 
 
 
