@@ -1,4 +1,6 @@
 <?php 
+
+    /* 
     // CONNECT TO DB
     // https://php.net/manual/en/function.mysqli-connect.php
     $conn = mysqli_connect('localhost', 'shayon', 'Shayon1234', 'ucl_club');
@@ -8,6 +10,10 @@
         // IF ANYTHING WENT WRONG IT WILL PRINT THE ERROR
         echo 'Connection error' . mysqli_connect_error();
     }
+    */
+
+
+    include('config/db_connect.php');
 
     // RIGHT QUERY FOR ALL PLAYERS
     // $sql = 'SELECT * FROM team'; // GET ALL COLUMNS

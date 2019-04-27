@@ -1,4 +1,7 @@
 <?php 
+
+    include('config/db_connect.php');
+
     //SETTING INITIAL EMPTY VALUE FOR ALL
     $title = $email = $players = '';
 
@@ -70,9 +73,24 @@
         if(array_filter($errors)){
             echo 'errors in the forms';
         }else{
-            echo 'form is valid';
-            // REDIRECT TO THE USERS
-            header('Location: index.php');
+            //PROTECTING DATA GOING TO DB
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+            $title = mysqli_real_escape_string($conn, $_POST['title']);
+            $players = mysqli_real_escape_string($conn, $_POST['players']);
+
+            // CREATE SQL STRING 
+            $sql = "INSERT INTO team(title, email, players) VALUES('$title', '$email', '$players')";
+
+            // SAVE TO DB AND CHECK
+            if(mysqli_query($conn, $sql)){    
+                // SUCCESS
+                // echo 'form is valid';
+                // REDIRECT TO THE USERS
+                header('Location: index.php');
+            }else{
+                // ERROR
+                echo 'query error: ' . mysqli_error($conn);
+            }
         }
     }
 ?>
