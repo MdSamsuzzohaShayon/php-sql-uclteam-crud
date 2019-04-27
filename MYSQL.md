@@ -115,3 +115,16 @@ INSERT INTO customers(firstName, lastName, email, address, city, state, zipcode)
 
  9. setting value this way -> go
  10. Browse tab to show the records
+
+ # Connecting PHP to MySql
+
+ - Options for connecting SQL. **MySQLi** or **PDO**
+
+ - we need to have a user name and password
+ - we can use default user name **root** and blanck password
+ - from user accounts tab we can set password and user name (need to update **config.inc**) in php my admin directory
+
+### Creating new user
+ - from user accounts -> add user account 
+
+ ![Connecting to db](db_connect.png)
