@@ -13,7 +13,7 @@
     // $sql = 'SELECT * FROM team'; // GET ALL COLUMNS
 
     // GET PARTICULAR COLUMNS
-    $sql = 'SELECT title, players, id FROM team';
+    $sql = 'SELECT title, players, id FROM team ORDER BY created_at';
 
     //  MAKE QUERIES AND GET THE RESULTS
     $result = mysqli_query($conn, $sql);
@@ -25,11 +25,30 @@
     mysqli_free_result($result);
 
     // CLOSE CONNECTIONS
-    mysqli_close($result);
+    mysqli_close($conn);
 
-    print_r($team);
+    // print_r($team);
 ?>
 
 
 <?php include("templates/header.php"); ?>
+    <h4 class="center grey-text">Players</h4>
+    <div class="container">
+        <div class="row">
+            <?php foreach($team as $t){ ?>
+            <div class="col s6 md3">
+                <div class="card z-depth-0">
+                    <div class="card-content center">
+                        <h6> <?php echo htmlspecialchars($t['title']); ?> </h6>
+                        <div><?php echo htmlspecialchars($t['players']); ?></div>
+                    </div>
+                    <div class="card-action right-align">
+                        <a href="#" class="brand-text">More Info</a>
+                    </div>
+
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
 <?php include("templates/footer.php"); ?>
