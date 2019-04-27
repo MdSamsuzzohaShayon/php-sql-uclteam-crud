@@ -74,16 +74,16 @@
     <h2 class="center">Add a team</h2>
     <form action="add.php" method="POST" class="white">
         <label>Your mail: </label>
-        <input type="text" name="email" value="<?php echo $email ?>">
+        <input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
         <div class="red-text"><?php echo $errors['email']; ?></div>
 
         <label>Team title: </label>
-        <input type="text" name="title" value="<?php echo $title ?>">
+        <input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
         <div class="red-text"><?php echo $errors['title']; ?></div>
 
 
         <label>players (comma separated): </label>
-        <input type="text" name="players" value="<?php echo $players ?>">
+        <input type="text" name="players" value="<?php echo htmlspecialchars($players) ?>">
         <div class="red-text"><?php echo $errors['players']; ?></div>
         <div class="center">
             <input type="submit" value="submit" name="submit" class="btn brand z-depth-0">
