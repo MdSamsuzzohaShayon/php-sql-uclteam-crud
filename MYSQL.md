@@ -94,7 +94,7 @@ INSERT INTO customers(firstName, lastName, email, address, city, state, zipcode)
 
 
 
-$ Creating db with GUI
+# Creating db with GUI
 
 ![database main screenshots](db_Copy.png)
 
@@ -106,3 +106,12 @@ $ Creating db with GUI
  4. type is the type of property that is 
  5. setting cerrent time
  6. A_I Comments -> for auto increments id when update
+
+ ### adding data to db
+ 7. **PhpMyAdmin** -> databases -> db_name -> table_name
+ 8. structure (optional, to see the table) -> insert
+ 
+ ![Insert records](insert_record.png)
+
+ 9. setting value this way -> go
+ 10. Browse tab to show the records
