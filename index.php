@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                     <div class="card-action right-align">
-                        <a href="details.php" class="brand-text">More Info</a>
+                        <a href="details.php?id=<?php echo $t['id'] ?>" class="brand-text">More Info</a>
                     </div>
 
                 </div>
