@@ -66,8 +66,19 @@
             }
         }
         // END OF THE CHECK POST
+
+        if(array_filter($errors)){
+            echo 'errors in the forms';
+        }else{
+            echo 'form is valid';
+            // REDIRECT TO THE USERS
+            header('Location: index.php');
+        }
     }
 ?>
+
+
+
 
 <?php include("templates/header.php"); ?>
 <section class="container grey-text">
