@@ -4,7 +4,7 @@
     /*if(isset($_GET["submit"])){
         echo $_GET["email"];
         echo $_GET["title"];
-        echo $_GET["ingredients"];
+        echo $_GET["players"];
     }*/
 
 
@@ -12,27 +12,44 @@
         // XSS protection with htmlspecialchars
         // echo htmlspecialchars($_POST["email"]);
         // echo htmlspecialchars($_POST["title"]);
-        // echo htmlspecialchars($_POST["ingredients"]);
+        // echo htmlspecialchars($_POST["players"]);
 
         // CHECK EMAIL
         if(empty($_POST['email'])){
             echo 'An email is required <br />';
         }else{
-            echo htmlspecialchars($_POST["email"]);
+            // echo htmlspecialchars($_POST["email"]);
+
+            $email = $_POST['email'];
+            // CHECKING FOR VALID EMAIL
+            // https://www.php.net/manual/en/function.filter-var.php
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                echo 'email must be a valid email address';
+            }
         }
 
         // CHECK TITLE
         if(empty($_POST['title'])){
             echo 'An title is required <br />';
         }else{
-            echo htmlspecialchars($_POST["title"]);
+            // echo htmlspecialchars($_POST["title"]);
+            $title = $_POST['title'];
+            // USING REGULAR EXPRESSION AND WE CAN USE IN ANY LANGUAGE
+            // https://www.php.net/manual/en/function.preg-match.php
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+            if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
+                echo "Title must be letters and spacess only";
+            }
         }
 
-        // CHECK ingredients
-        if(empty($_POST['ingredients'])){
-            echo 'An ingredients is required <br />';
+        // CHECK players
+        if(empty($_POST['players'])){
+            echo 'An players is required <br />';
         }else{
-            echo htmlspecialchars($_POST["ingredients"]);
+            $players = $_POST['players'];
+            if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $players)){
+                echo "players must be coma seperated list";
+            }
         }
         // END OF THE CHECK POST
     }
@@ -48,8 +65,8 @@
         <label>Team title: </label>
         <input type="text" name="title">
 
-        <label>Ingredients (comma separated): </label>
-        <input type="text" name="ingredients">
+        <label>players (comma separated): </label>
+        <input type="text" name="players">
         <div class="center">
         <input type="submit" value="submit" name="submit" class="btn brand z-depth-0">
         </div>
