@@ -10,6 +10,10 @@ if (isset($_POST['save'])) {
 
     // MAKING QUERY
     $mysqli->query("INSERT INTO data(name , club) VALUES('$name', '$club')") or die($mysqli->error);
-} else {
-    # code...
+}
+
+
+if(isset($_GET['delete'])){
+    $id = $_GET['delete'];
+    $mysqli->query("DELETE FROM data WHERE id=$id") or die($mysqli->error());
 }

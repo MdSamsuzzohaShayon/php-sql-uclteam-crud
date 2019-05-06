@@ -55,7 +55,10 @@
                         <tr>
                             <td><?php echo $row['name']; ?></td>
                             <td><?php echo $row['club']; ?></td>
-                            <td></td>
+                            <td>
+                                <a href="index.php?edit=<?php echo $row['id']; ?>" class="ui inverted tiny green button">Edit</a>
+                                <a href="index.php?delete=<?php echo $row['id']; ?>" class="ui inverted tiny green button">Delete</a>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
