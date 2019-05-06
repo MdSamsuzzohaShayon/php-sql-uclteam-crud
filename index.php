@@ -20,13 +20,67 @@
 </head>
 
 <body>
+    <?php require_once 'process.php'; ?>
     <div class="landing">
-        <br>
-        <br>
-        <br>
-        <br>
         <div class="ui container">
-            <form action="" method="post" class="ui form">
+            <br><br>
+            <!-- TABLE BEGAIN -->
+            <?php
+            // CONNECT TO DB
+            $mysqli = new mysqli('localhost', 'shayon', 'Shayon1234', 'ucl_club') or die(mysqli_error($mysqli));
+
+            // MAKING QUERY
+            $result = $mysqli->query("SELECT * FROM data") or die($mysqli->error);
+
+            // DETAILS
+            // pre_r($result);
+
+            // DATA
+            // pre_r($result->fetch_assoc());
+
+            ?>
+
+
+            <table class="ui green table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Club</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($row = $result->fetch_assoc()) : ?>
+                        <tr>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['club']; ?></td>
+                            <td></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+
+
+            <?php
+
+            // SHOW DATA
+            function pre_r($array)
+            {
+                echo '<div>';
+                print_r($array);
+                echo '</div>';
+            }
+
+            ?>
+            <!-- TABLE ENDING -->
+
+            <br>
+            <br>
+            <br>
+
+            <!-- FORM BEGAIN -->
+            <form action="process.php" method="POST" class="ui form">
                 <div class="two fields">
                     <div class="field">
                         <label for="name" class="ui pointing below label">Enter player name</label>
@@ -38,8 +92,9 @@
                     </div>
                 </div>
                 <br><br>
-                <button type="submit" name="save" class="ui inverted huge green fluid button">Save</button>
+                <button type="submit" name="save" class="ui huge green fluid button">Save</button>
             </form>
+            <!-- FORM ENDING -->
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>">
