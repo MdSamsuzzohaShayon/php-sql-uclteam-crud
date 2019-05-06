@@ -21,9 +21,21 @@
 
 <body>
     <?php require_once 'process.php'; ?>
+
+
+
     <div class="landing">
         <div class="ui container">
             <br><br>
+            <?php
+            if (isset($_SESSION['message'])) : ?>
+                <div class="ui <?= $_SESSION['msg_type'] ?> message">
+                    <?php
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                    ?>
+                </div>
+            <?php endif ?>
             <!-- TABLE BEGAIN -->
             <?php
             // CONNECT TO DB
@@ -57,7 +69,7 @@
                             <td><?php echo $row['club']; ?></td>
                             <td>
                                 <a href="index.php?edit=<?php echo $row['id']; ?>" class="ui inverted tiny green button">Edit</a>
-                                <a href="index.php?delete=<?php echo $row['id']; ?>" class="ui inverted tiny green button">Delete</a>
+                                <a href="index.php?delete=<?php echo $row['id']; ?>" class="ui inverted tiny red button">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -84,18 +96,24 @@
 
             <!-- FORM BEGAIN -->
             <form action="process.php" method="POST" class="ui form">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="two fields">
                     <div class="field">
                         <label for="name" class="ui pointing below label">Enter player name</label>
-                        <input type="text" placeholder="name____" name="name">
+                        <input type="text" placeholder="name____" name="name" value="<?php echo $name; ?>">
                     </div>
                     <div class="field">
                         <label for="club" class="ui pointing below label">Enter club name</label>
-                        <input type="text" placeholder="club____" name="club">
+                        <input type="text" placeholder="club____" name="club" value="<?php echo $club; ?>">
                     </div>
                 </div>
                 <br><br>
-                <button type="submit" name="save" class="ui huge green fluid button">Save</button>
+                <?php
+                if ($update == true) : ?>
+                    <button type="submit" name="update" class="ui huge green fluid button">Update</button>
+                <?php else : ?>
+                    <button type="submit" name="save" class="ui huge green fluid button">Save</button>
+                <?php endif; ?>
             </form>
             <!-- FORM ENDING -->
         </div>
