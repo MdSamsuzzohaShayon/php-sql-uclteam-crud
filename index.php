@@ -1,125 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PHP CRUD</title>
+    <title>Books</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <style>
-        .landing {
-            width: 100%;
-            height: 100vh;
-            background-image: url(nature_bird.jpg);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    </style>
 </head>
-
 <body>
-    <?php require_once 'process.php'; ?>
 
 
-
-    <div class="landing">
-        <div class="ui container">
-            <br><br>
-            <?php
-            if (isset($_SESSION['message'])) : ?>
-                <div class="ui <?= $_SESSION['msg_type'] ?> message">
-                    <?php
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                    ?>
-                </div>
-            <?php endif ?>
-            <!-- TABLE BEGAIN -->
-            <?php
-            // CONNECT TO DB
-            $mysqli = new mysqli('localhost', 'shayon', 'Shayon1234', 'ucl_club') or die(mysqli_error($mysqli));
-
-            // MAKING QUERY
-            $result = $mysqli->query("SELECT * FROM data") or die($mysqli->error);
-
-            // DETAILS
-            // pre_r($result);
-
-            // DATA
-            // pre_r($result->fetch_assoc());
-
-            ?>
-
-
-            <table class="ui green table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Club</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while ($row = $result->fetch_assoc()) : ?>
-                        <tr>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['club']; ?></td>
-                            <td>
-                                <a href="index.php?edit=<?php echo $row['id']; ?>" class="ui inverted tiny green button">Edit</a>
-                                <a href="index.php?delete=<?php echo $row['id']; ?>" class="ui inverted tiny red button">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-
-
-            <?php
-
-            // SHOW DATA
-            function pre_r($array)
-            {
-                echo '<div>';
-                print_r($array);
-                echo '</div>';
-            }
-
-            ?>
-            <!-- TABLE ENDING -->
-
-            <br>
-            <br>
-            <br>
-
-            <!-- FORM BEGAIN -->
-            <form action="process.php" method="POST" class="ui form">
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <div class="two fields">
-                    <div class="field">
-                        <label for="name" class="ui pointing below label">Enter player name</label>
-                        <input type="text" placeholder="name____" name="name" value="<?php echo $name; ?>">
-                    </div>
-                    <div class="field">
-                        <label for="club" class="ui pointing below label">Enter club name</label>
-                        <input type="text" placeholder="club____" name="club" value="<?php echo $club; ?>">
-                    </div>
-                </div>
-                <br><br>
-                <?php
-                if ($update == true) : ?>
-                    <button type="submit" name="update" class="ui huge green fluid button">Update</button>
-                <?php else : ?>
-                    <button type="submit" name="save" class="ui huge green fluid button">Save</button>
-                <?php endif; ?>
-            </form>
-            <!-- FORM ENDING -->
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </body>
-
 </html>

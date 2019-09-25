@@ -17,3 +17,14 @@ There are three step
 [Function referance](https://www.php.net/manual/en/function.explode.php)
 
 [MYSQLI](https://www.php.net/manual/en/book.mysqli.php)
+
+
+# PHP Book Shop CRUD
+
+[*tutorial link*](https://www.youtube.com/watch?v=JZdMXUIMdQw)
+
+using 
+ 1. php
+ 2. Semantic UI
+ 3. Javascript
+ 4. css
