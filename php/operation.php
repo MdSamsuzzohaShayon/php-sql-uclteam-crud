@@ -10,5 +10,5 @@ $con = createDB();
 
 //CREATE BUTTON CLICK
 if(isset($_POST["create"])){
-    echo "Create button clicked";
+    echo "the button has been clicked";
 }

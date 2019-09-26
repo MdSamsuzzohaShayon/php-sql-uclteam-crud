@@ -1,5 +1,5 @@
 <?php
-    require_once("./php/component.php");
+//    require_once("./php/component.php");
     require_once ('./php/operation.php');
 ?>
 
@@ -24,7 +24,7 @@
     </div>
     <br><br><br>
     <div class="ui container">
-        <form action="" class="ui equal width form">
+        <form action="" class="ui equal width form" method="POST">
             <div class="fields">
                 <?php inputElement('<i class="address book outline icon"></i>', 'Enter Your Book Name', 'book_name', ''); ?>
             </div>

@@ -16,18 +16,19 @@ function inputElement($icon, $placeholder, $name, $value)
 }
 
 
+
 function buttonElement($btnid, $styleclass, $text, $name, $icon)
 {
     $btn = "
     <div class='field'>
-    <div name='$name' class='$styleclass' tabindex=\"0\">
+    <button name='$name' class='$styleclass' tabindex=\"0\" type='submit'>
           <div  class=\"visible content\">
             $icon
           </div>
            <div  class=\"hidden content\"> $text </div>
-    </div>
+    </button>
 </div>
-    
+
     ";
 
     echo $btn;
