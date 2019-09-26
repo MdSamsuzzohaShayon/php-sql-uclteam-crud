@@ -1,5 +1,8 @@
 <?php
     require_once("./php/component.php");
+    require_once("./php/db.php");
+
+    createDB();
 ?>
 
 <!doctype html>
@@ -18,7 +21,7 @@
 <div id="whole">
     <div class="ui menu inverted blue">
         <div class="ui container">
-            <h1 class="ui header aligned center item"><i class="book icon"></i> Hello PHP</h1>
+            <h1 class="ui header aligned center item"><i class="book icon"></i> Bookshop</h1>
         </div>
     </div>
     <br><br><br>
