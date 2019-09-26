@@ -21,10 +21,10 @@ function buttonElement($btnid, $styleclass, $text, $name, $icon)
     $btn = "
     <div class='field'>
     <div name='$name' class='$styleclass' tabindex=\"0\">
-          <div class=\"visible content\">
+          <div  class=\"visible content\">
             $icon
           </div>
-           <div class=\"hidden content\"> $text </div>
+           <div  class=\"hidden content\"> $text </div>
     </div>
 </div>
     

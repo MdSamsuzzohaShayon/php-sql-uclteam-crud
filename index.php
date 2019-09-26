@@ -1,8 +1,6 @@
 <?php
     require_once("./php/component.php");
-    require_once("./php/db.php");
-
-    createDB();
+    require_once ('./php/operation.php');
 ?>
 
 <!doctype html>
