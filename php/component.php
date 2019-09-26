@@ -1,16 +1,34 @@
 <?php
 
 
-function inputElement()
+function inputElement($icon, $placeholder, $name, $value)
 {
     $ele = "
         <div class=\"field\">
-            <label for=\"id\" class=\"ui blue header huge\">Enter your ID Number</label>
+            <label for='$name' class=\"ui blue header huge\">$placeholder</label>
             <div class=\"ui right labeled input\">
-                <label for=\"id\" class=\"ui label\"><i class=\"id card icon\"></i></label>
-                <input type=\"text\" placeholder=\"ID\" id=\"id\">
+                <label for=\"id\" class=\"ui label\">$icon</label>
+                <input name='$name' autocomplete='off' value='$value' type=\"text\" placeholder='$placeholder' id=\"id\">
             </div>
         </div>
 ";
     echo $ele;
+}
+
+
+function buttonElement($btnid, $styleclass, $text, $name, $icon)
+{
+    $btn = "
+    <div class='field'>
+    <div name='$name' class='$styleclass' tabindex=\"0\">
+          <div class=\"visible content\">
+            $icon
+          </div>
+           <div class=\"hidden content\"> $text </div>
+    </div>
+</div>
+    
+    ";
+
+    echo $btn;
 }
