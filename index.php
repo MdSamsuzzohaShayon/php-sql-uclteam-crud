@@ -35,12 +35,13 @@
             </div>
             <div class="fields">
                 <?php buttonElement("btn-create", "ui animated button blue fluid", 'Create', "create", '<i class="plus icon"></i>'); ?>
-                <?php buttonElement("btn-read", "ui animated button blue fluid", 'Read', "read", '<i class="sync icon"></i>'); ?>
+                <?php buttonElement("btn-read", "ui animated button blue fluid", 'Load', "read", '<i class="sync icon"></i>'); ?>
                 <?php buttonElement("btn-update", "ui animated button blue fluid", 'Update', "update", '<i class="arrow alternate circle down icon"></i>'); ?>
                 <?php buttonElement("btn-delete", "ui animated button blue fluid", 'Delete', "delete", '<i class="trash alternate outline icon"></i>'); ?>
             </div>
         </form>
         <br><br>
+        <div class="ui header aligned center blue segment">Show all the data below</div>
         <table class="ui blue table">
             <thead>
             <tr>
@@ -53,20 +54,25 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Harry Potter</td>
-                <td>Rolling</td>
-                <td>99.99</td>
-                <td><i class="edit outline icon"></i></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Harry Potter</td>
-                <td>Rolling</td>
-                <td>99.99</td>
-                <td><i class="edit outline icon"></i></td>
-            </tr>
+            <?php
+                if(isset($_POST['read'])){
+                    $result = getData();
+                    if($result){
+                        while ($row=mysqli_fetch_assoc($result)){ ?>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['book_name']; ?></td>
+                                <td><?php echo $row['book_publisher']; ?></td>
+                                <td><?php echo $row['book_price']; ?></td>
+                                <td><i class="edit outline icon"></i></td>
+                            </tr>
+
+            <?php
+                        }
+                    }
+                }
+
+            ?>
             </tbody>
         </table>
 

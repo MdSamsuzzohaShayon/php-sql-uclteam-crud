@@ -15,6 +15,9 @@ if(isset($_POST["create"])){
 }
 
 
+//LOAD DATA ON BUTTON CLICK
+
+
 function createData(){
     $bookname = textboxValue("book_name");
     $bookpublisher = textboxValue('book_publisher');
@@ -26,12 +29,12 @@ function createData(){
         $sql = "INSERT INTO books (book_name, book_publisher, book_price)
                 VALUES ('$bookname','$bookpublisher','$bookprice')";
         if(mysqli_query($GLOBALS['con'], $sql)){
-            echo "Record successfully inserted";
+            textNode("ui positive message", "Record successfully inserted");
         }else{
             echo "Error" ;
         }
     }else{
-        echo "Error provide data into textbox";
+        textNode("ui negative message", "Provide data in the text box");
     }
 }
 
@@ -52,5 +55,26 @@ function textboxValue($value){
 
 }
 
+
+
+//MESSAGE
+function textNode($classname, $msg){
+    $element = "<div class='$classname'> $msg </div>";
+    echo $element;
+}
+
+
+
+
+
+//GET DATA FROM DATABASE
+function getData(){
+    $sql = "SELECT*FROM books";
+    $result = mysqli_query($GLOBALS['con'], $sql);
+
+    if(mysqli_num_rows($result)>0){
+        return $result;
+    }
+}
 
 
