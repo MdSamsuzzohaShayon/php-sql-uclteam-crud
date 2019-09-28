@@ -53,18 +53,18 @@
             </tr>
             </thead>
 
-            <tbody>
+            <tbody id="tbody">
             <?php
                 if(isset($_POST['read'])){
                     $result = getData();
                     if($result){
                         while ($row=mysqli_fetch_assoc($result)){ ?>
                             <tr>
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['book_name']; ?></td>
-                                <td><?php echo $row['book_publisher']; ?></td>
-                                <td><?php echo $row['book_price']; ?></td>
-                                <td><i class="edit outline icon"></i></td>
+                                <td data-id="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></td>
+                                <td data-id="<?php echo $row['id']; ?>" ><?php echo $row['book_name']; ?></td>
+                                <td data-id="<?php echo $row['id']; ?>" ><?php echo $row['book_publisher']; ?></td>
+                                <td data-id="<?php echo $row['id']; ?>" ><?php echo $row['book_price']; ?></td>
+                                <td><i class="edit outline icon btnedit"  data-id="<?php echo $row['id']; ?>" ></i></td>
                             </tr>
 
             <?php
@@ -81,6 +81,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="./php/main.js"></script>
 </body>
 </html>
