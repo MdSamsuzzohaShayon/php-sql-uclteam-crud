@@ -15,6 +15,13 @@ if(isset($_POST["create"])){
 }
 
 
+// UPDATE DATA FROM TABLE TO DATABASE THOUGH INPUT FIELD
+if(isset($_POST['update'])){
+    updateData();
+}
+
+
+
 //LOAD DATA ON BUTTON CLICK
 
 
@@ -77,4 +84,29 @@ function getData(){
     }
 }
 
+
+
+//UPDATE DATA
+function updateData(){
+    $bookid = textboxValue('book_id');
+    $bookname = textboxValue('book_name');
+    $bookpublisher = textboxValue('book_publisher');
+    $bookprice = textboxValue('book_price');
+
+
+    if($bookname && $bookpublisher && $bookprice){
+        $sql = "
+            UPDATE books SET book_name='$bookname', book_publisher='$bookpublisher', book_price='$bookprice' WHERE id='$bookid'
+        ";
+
+        if(mysqli_query($GLOBALS['con'], $sql)){
+            textNode("ui positive message", "Record successfully updated");
+        }else{
+            textNode("ui negative message", "Error: to update data");
+        }
+    }else{
+        textNode("ui negative message", "Select data by using edit icon");
+    }
+
+}
 

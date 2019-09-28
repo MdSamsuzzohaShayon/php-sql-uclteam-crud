@@ -63,7 +63,7 @@
                                 <td data-id="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></td>
                                 <td data-id="<?php echo $row['id']; ?>" ><?php echo $row['book_name']; ?></td>
                                 <td data-id="<?php echo $row['id']; ?>" ><?php echo $row['book_publisher']; ?></td>
-                                <td data-id="<?php echo $row['id']; ?>" ><?php echo $row['book_price']; ?></td>
+                                <td data-id="<?php echo $row['id']; ?>" ><?php echo '$' . $row['book_price']; ?></td>
                                 <td><i class="edit outline icon btnedit"  data-id="<?php echo $row['id']; ?>" ></i></td>
                             </tr>
 

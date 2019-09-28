@@ -10,8 +10,8 @@ $(".btnedit").click(e=>{
 
     id.val(textvalues[0]);
     bookname.val(textvalues[1]);
-    bookpublisher.val(textvalues[1]);
-    bookprice.val(textvalues[1]);
+    bookpublisher.val(textvalues[2]);
+    bookprice.val(textvalues[3].replace("$", ''));
 
     // GET VALUE OF A RECORD
     console.log(textvalues);
