@@ -21,8 +21,6 @@ There are three step
 
 # PHP BookShop CRUD
 
-![Bookshop CRUD](bookshop_crud.png)
-
 [*tutorial link*](https://www.youtube.com/watch?v=JZdMXUIMdQw)
 
 using 
@@ -30,3 +28,12 @@ using
  2. Semantic UI
  3. Javascript
  4. css 
+ 
+# PHP Bootstrap Cartoon CRUD
+
+ 1. project setup with folder and files
+ 2. Design layout with bootstrap
+ 3. create form element
+ 4. database mysqli connection
+ 
+ 
