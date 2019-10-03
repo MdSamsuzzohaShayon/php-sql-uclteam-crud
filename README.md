@@ -12,3 +12,12 @@ There are three step
  2. make the query
  3. fetch the query
  
+ ### Connect to DB
+ 
+ - User setting
+ 
+ ![User setting](db_connect.png)
+ 
+ - Create table and column
+ 
+ ![table and column](db.png)
