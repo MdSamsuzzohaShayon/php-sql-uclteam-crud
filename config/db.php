@@ -1,5 +1,7 @@
 <?php
 
+function createDB(){
+
 //ASSIGNING VARIABLES FOR CREATING DB
 $server = '127.0.0.1';
 $user = 'root';
@@ -31,13 +33,14 @@ if(mysqli_query($conn, $sql)){
 //    CREATE SQL TABLE THOUGH SQL SCRIPT
     $sql = "
         CREATE TABLE IF NOT EXISTS movies(
-            id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-            movie VARCHAR (25) NOT NULL ,
+            id INT(11)NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            movie VARCHAR (25)NOT NULL,
             director VARCHAR (20),
             charecters VARCHAR (25),
             revenue FLOAT 
         );
     ";
+    echo mysqli_query($conn, $sql);
 
     if(mysqli_query($conn, $sql)){
         echo "<div class='alert alert-success'>DB Connection has been made successfully</div> ";
@@ -48,4 +51,5 @@ if(mysqli_query($conn, $sql)){
 }else{
     echo "<div class='alert alert-danger'>Error while creating database</div> ";
     echo "Error while creating database" . mysqli_error();
+}
 }
