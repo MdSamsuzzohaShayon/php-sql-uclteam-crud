@@ -1,3 +1,19 @@
+<?php
+
+use mysql_xdevapi\Result;
+
+require_once 'include/db.php';
+//https://www.php.net/manual/en/ref.mysql.php
+$query = "SELECT * FROM `movies`";
+//https://www.php.net/manual/en/function.mysql-query.php
+$result = mysqli_query($conn, $query);
+//https://www.php.net/manual/en/function.mysql-fetch-array.php
+//https://www.php.net/manual/en/function.mysql-fetch-row.php
+//https://www.php.net/manual/en/mysqli-result.num-rows.php
+$records = mysqli_num_rows($result);
+
+?>
+
 <!doctype html>
 <html lang="en">
 <?php include('partials/head.php'); ?>
@@ -8,34 +24,37 @@
 
 <br><br><br><br>
 <div class="container">
-    <table class="table shadow">
+    <table class="table shadow bg-secondary">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ID</th>
+            <th scope="col">Movie</th>
+            <th scope="col">Director</th>
+            <th scope="col">Revenue</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        <?php
+//        echo "time to check the if condition";
+            if(!empty($records)){
+//                echo "-record is not empty";
+                while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                        <tr>
+                            <th scope="row"><?php $row['id']; ?></th>
+                            <td><?php echo $row['movie']; ?></td>
+                            <td><?php echo $row['director']; ?></td>
+                            <td><?php echo $row['revenue']; ?></td>
+                            <td>
+                                <a href="/" class="btn btn-primary">Edit</a>
+                                <a href="/" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php
+                }
+            }
+        ?>
         </tbody>
     </table>
 </div>
