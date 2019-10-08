@@ -24,7 +24,7 @@ $records = mysqli_num_rows($result);
 
 <br><br><br><br>
 <div class="container">
-    <table class="table shadow bg-secondary">
+    <table class="table shadow bg-secondary text-white">
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -42,13 +42,13 @@ $records = mysqli_num_rows($result);
                 while($row = mysqli_fetch_assoc($result)){
                     ?>
                         <tr>
-                            <th scope="row"><?php $row['id']; ?></th>
+                            <th scope="row"><?php echo $row['id']; ?></th>
                             <td><?php echo $row['movie']; ?></td>
                             <td><?php echo $row['director']; ?></td>
                             <td><?php echo $row['revenue']; ?></td>
                             <td>
-                                <a href="/" class="btn btn-primary">Edit</a>
-                                <a href="/" class="btn btn-danger">Delete</a>
+                                <a href="/php-sql-crud/add.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
+                                <a href="/php-sql-crud/delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     <?php
@@ -63,6 +63,5 @@ $records = mysqli_num_rows($result);
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>
