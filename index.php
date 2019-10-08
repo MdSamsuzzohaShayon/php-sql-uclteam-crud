@@ -1,52 +1,49 @@
-<!--https://www.youtube.com/watch?v=MccPSNL_VzU-->
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cartoon Crud</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<?php include('partials/head.php'); ?>
+
 <body>
-<div class="fullpage">
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <a href="#" class="navbar-brand">Cartoon Crud</a>
-        </div>
-    </nav>
-    <br>
-    <div class="container">
-        <form action="crudquery.php" method="post" class="bg-dark p-3 shadow">
-            <div class="form-row form-group">
-                <?php formElement('movie', 'text', 'Enter name of a movie'); ?>
-                <?php formElement('director', 'text', 'Enter director name of that movie'); ?>
-                <?php formElement('revenue', 'text', 'Gross income of that movie'); ?>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-secondary btn-block" type="submit" name="save">Save</button>
-            </div>
-        </form>
-    </div>
+
+<?php include('partials/nav.php') ?>
+
+<br><br><br><br>
+<div class="container">
+    <table class="table shadow">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
-
-<?php
-function formElement($name, $type, $placeholder)
-{
-    $element = "
-    <div class=\"col\">
-                <label for=\"$name\" class='text-white'>$placeholder</label>
-                <input type=\"$type\" class=\"form-control\" name=\"$name\" id=\"$name\"
-                       placeholder=\"$placeholder\">
-            </div>
-    ";
-    echo $element;
-}
-
-?>
