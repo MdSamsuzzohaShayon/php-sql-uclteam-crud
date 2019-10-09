@@ -12,6 +12,14 @@ $result = mysqli_query($conn, $query);
 //https://www.php.net/manual/en/mysqli-result.num-rows.php
 $records = mysqli_num_rows($result);
 
+$msg = "";
+if(!empty($_GET['msg'])){
+    $msg = $_GET['msg'];
+    $alet_msg = ($msg == "add") ? "New record has been added successfully" : "Record has been updated successfully";
+}else{
+
+}
+
 ?>
 
 <!doctype html>
@@ -30,7 +38,7 @@ $records = mysqli_num_rows($result);
             <th scope="col">ID</th>
             <th scope="col">Movie</th>
             <th scope="col">Director</th>
-            <th scope="col">Revenue</th>
+            <th scope="col">Revenue(USD)</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -45,7 +53,7 @@ $records = mysqli_num_rows($result);
                             <th scope="row"><?php echo $row['id']; ?></th>
                             <td><?php echo $row['movie']; ?></td>
                             <td><?php echo $row['director']; ?></td>
-                            <td><?php echo $row['revenue']; ?></td>
+                            <td><?php echo $row['revenue']; ?>m</td>
                             <td>
                                 <a href="/php-sql-crud/add.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
                                 <a href="/php-sql-crud/delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>

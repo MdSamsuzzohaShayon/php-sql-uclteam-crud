@@ -17,10 +17,12 @@ if(isset($_POST['submit']) && $_POST['submit'] != ''){
     if(!empty($id)){
 //        UPDATE RECORD
         $movie_query = "UPDATE `movies` SET movie='".$movie."', director='".$director."', revenue='".$revenue."' WHERE id='".$id."'";
+        $msg = "update";
     }else{
 //        INSERT RECORD
         $movie_query = "INSERT INTO `movies` (movie, director, revenue) VALUES 
         ('".$movie."', '".$director."', '".$revenue."')";
+        $msg = "add";
     }
 
 
@@ -28,7 +30,8 @@ if(isset($_POST['submit']) && $_POST['submit'] != ''){
 
     $result = mysqli_query($conn, $movie_query);
     if($result){
-        echo "<br> Record has been saved"; die;
+        echo "<br> Record has been saved";
+        header('location:/php-sql-crud/index.php?msg='.$msg);
     }
 }
 
