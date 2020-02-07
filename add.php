@@ -1,87 +1,148 @@
+<!-- ADD A RECORD TO THE DATABASE -->
 <?php
-require_once 'include/db.php';
+require "config/db.php";
 
 
-if(isset($_POST['submit']) && $_POST['submit'] != ''){
-//    echo "<pre>"; print_r($_POST); die;
+// ADD ITEM / CREATE ITEM
+// ACTION ON CLICK THE BUTTON
+if (isset($_POST['submit']) && $_POST['submit'] != '') {
+
+    $id = (!empty($_GET['id'])) ? $_GET['id'] : '';
+    echo "<div class='text-white bg-dark'>$id</div>";
+    echo "<div class='text-white bg-dark'>Below Id preinting</div>";
 
 
+  // CHECKING FOR NOT ANY OF THOSE FIELDS ARE EMPTY
+    $name = (!empty($_POST['name'])) ? $_POST['name'] : '';
+    $marketVlu = (!empty($_POST['marketVlu'])) ? $_POST['marketVlu']: '';
+    $position = (!empty($_POST['position'])) ? $_POST['position'] : '';
+    $club = (!empty($_POST['club'])) ? $_POST['club'] : '';
 
-
-
-    $movie = (!empty($_POST['movie'])) ? $_POST['movie'] : '';
-    $director = (!empty($_POST['director'])) ? $_POST['director'] : '';
-    $revenue = (!empty($_POST['revenue'])) ? $_POST['revenue'] : '';
-    $id = (!empty($_POST['movie_id'])) ? $_POST['movie_id'] : '';
-
-    if(!empty($id)){
-//        UPDATE RECORD
-        $movie_query = "UPDATE `movies` SET movie='".$movie."', director='".$director."', revenue='".$revenue."' WHERE id='".$id."'";
-        $msg = "update";
+    if($id){
+      // UPDATE `player` SET `id`=[value-1],`name`=[value-2],`market_value`=[value-3],`position`=[value-4],`club`=[value-5] WHERE 1
+      // $sql = "UPDATE books SET book_name='$bookname', book_publisher='$bookpublisher', book_price='$bookprice' WHERE id='$bookid'";
+      // UPDATE `player` SET `name` = 'Lionel Messi' WHERE `player`.`id` = 1;
+        $query = "UPDATE player SET name='$name', market_value='$marketVlu', position='$position', club='$club' WHERE id='$id'";
+        $message = "updated";
     }else{
-//        INSERT RECORD
-        $movie_query = "INSERT INTO `movies` (movie, director, revenue) VALUES 
-        ('".$movie."', '".$director."', '".$revenue."')";
-        $msg = "add";
+    //   // MAKING QUERY TO INSERT DATA
+        $query = "INSERT INTO player(name, market_value, position, club) VALUES ('$name', '$marketVlu', '$position', '$club')";
+        $message = "added";
     }
 
 
-
-
-    $result = mysqli_query($conn, $movie_query);
-    if($result){
-        echo "<br> Record has been saved";
-        header('location:/php-sql-crud/index.php?msg='.$msg);
+// PERFORM OUR QUERY ON THE DATABASE
+    if(mysqli_query($conn , $query)){
+        header('Location: index.php?record='.$message);
+        // if($_GET['record']=='success'){
+        //     echo "<div class='alert-success'>record has been added </div>";
+        // }
+    }else{
+        mysqli_error($conn);
     }
 }
 
-if(isset($_GET['id']) && $_GET['id'] != ''){
-    $movie_id = $_GET['id'];
-    $movie_query = "SELECT * FROM `movies` WHERE id='".$movie_id."'";
-    $movie_res = mysqli_query($conn, $movie_query);
-    $result = mysqli_fetch_row($movie_res);
-//    echo "<pre>"; print_r($result);
-    $movie = $result[1];
-    $director = $result[2];
-    $revenue = $result[3];
+
+
+
+
+
+
+
+// EDIT ITEM / UPDATE ITEM
+
+
+
+
+
+// SHOWING VALUE IN THE VALUE OF INPUT FORM
+if(isset($_GET['id']) &&  $_GET['id'] != ''){
+
+//   $movie_id = $_GET['id'];
+//   $movie_query = "SELECT * FROM `movies` WHERE id='".$movie_id."'";
+//   $movie_res = mysqli_query($conn, $movie_query);
+//   $result = mysqli_fetch_row($movie_res);
+// //    echo "<pre>"; print_r($result);
+//   $movie = $result[1];
+//   $director = $result[2];
+//   $revenue = $result[3];
+
+    $player_id = $_GET['id'] ;
+    $query = "SELECT * FROM `player` WHERE id=$player_id";
+    $result = mysqli_query($conn, $query);
+    $records = mysqli_fetch_row($result); //  Get a result row as an enumerated array
+
+    // echo "<div class='bg-success'> $records </div>"; // GETTING RESULT
+
+    // EXTRACT ALL RESULT INDIVIDUALLY
+    $name = $records[1];
+    $marketVlu = $records[2];
+    $position = $records[3];
+    $club = $records[4];
+    // echo "working";
 }else{
-    $movie = "";
-    $director = "";
-    $revenue = "";
-    $movie_id = "";
+    // $name = ''
+    // // $marketVlu = '';
+    // $position = '';
+    // $club = '';
 }
+
 
 ?>
 
-<!doctype html>
-<html lang="en">
-<?php include('partials/head.php'); ?>
+
+
+
+
+
+
+
+
+
+<!-- THIS IS FOR EDIT ITEM -->
+<?php require_once "partials/head.php"; ?>
 <body>
-<?php include('partials/nav.php') ?>
-<br><br>
-<div class="container">
-    <form method="POST" action="" >
+
+<?php include_once "partials/nav.php"?>
+
+
+
+<div class="container mt-5 shadow p-5">
+    <h2 class="text-center">Change Players Information</h2>
+    <br>
+    <form action="" method="post">
         <div class="form-row">
             <div class="col">
-                <label for="movie" class="text-success">Enter the name of the movie</label>
-                <input type="text" name="movie" value="<?php echo $movie; ?>" class="form-control shadow" placeholder="Enter the name of the movie">
+                <div class="form-group">
+                    <label for="name">Player Name</label>
+                    <input type="text" class="form-control" name="name" value="<?php echo $name; ?>" placeholder="Enter player name !" >
+                </div>
             </div>
             <div class="col">
-                <label for="director" class="text-success">Enter the name of that movie director</label>
-                <input  value="<?php echo $director; ?>" type="text" name="director" class="form-control shadow" placeholder="Enter the name of that movie director">
-            </div>
-            <div class="col">
-                <label for="revenue" class="text-success">Total gross income</label>
-                <input  value="<?php echo $revenue; ?>" type="text" name="revenue" class="form-control shadow" placeholder="Total gross income">
+                <div class="form-group">
+                    <label for="marketVlu">Market Value</label>
+                    <input type="text" class="form-control" name="marketVlu" value="<?php echo $marketVlu; ?>" placeholder="Enter Market Value !">
+                </div>
             </div>
         </div>
-        <br>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <input type="text" class="form-control" name="position" value="<?php echo $position; ?>" placeholder="Enter player position !">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="club">Market Value</label>
+                    <input type="text" class="form-control" name="club" value="<?php echo $club; ?>" placeholder="Enter Club Name !" >
+                </div>
+            </div>
+        </div>
         <div class="form-group">
-            <input type="hidden" name="movie_id" value="<?php echo $movie_id; ?>">
-            <input type="submit" name="submit" class="btn btn-success btn-block shadow" value="Submit" />
+            <input type="submit" class="btn btn-primary form-control" name="submit">
         </div>
     </form>
 </div>
 
-</body>
-</html>
+<?php include_once "partials/footer.php" ?>

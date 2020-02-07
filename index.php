@@ -1,75 +1,95 @@
-<?php
-
-use mysql_xdevapi\Result;
-
-require_once 'include/db.php';
-//https://www.php.net/manual/en/ref.mysql.php
-$query = "SELECT * FROM `movies`";
-//https://www.php.net/manual/en/function.mysql-query.php
-$result = mysqli_query($conn, $query);
-//https://www.php.net/manual/en/function.mysql-fetch-array.php
-//https://www.php.net/manual/en/function.mysql-fetch-row.php
-//https://www.php.net/manual/en/mysqli-result.num-rows.php
-$records = mysqli_num_rows($result);
-
-$msg = "";
-if(!empty($_GET['msg'])){
-    $msg = $_GET['msg'];
-    $alet_msg = ($msg == "add") ? "New record has been added successfully" : "Record has been updated successfully";
-}else{
-
-}
-
-?>
-
-<!doctype html>
-<html lang="en">
-<?php include('partials/head.php'); ?>
-
+<?php require_once "partials/head.php"; ?>
 <body>
 
-<?php include('partials/nav.php') ?>
+<?php include_once "partials/nav.php"?>
 
-<br><br><br><br>
-<div class="container">
-    <table class="table shadow bg-secondary text-white">
+
+
+<div class="container mt-5 shadow p-5">
+    <h2 class="text-center">Enter Players Information</h2>
+    <br>
+    <form action="add.php" method="post">
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">Player Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter player name !">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="marketVlu">Market Value</label>
+                    <input type="text" class="form-control" name="marketVlu" placeholder="Enter Market Value !">
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <input type="text" class="form-control" name="position" placeholder="Enter player position !">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="club">Market Value</label>
+                    <input type="text" class="form-control" name="club" placeholder="Enter Club Name !">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary form-control" name="submit">
+        </div>
+    </form>
+
+    <br><br>
+    <table class="table text-white bg-dark">
+      <?php
+        $query = "SELECT * FROM `player`"; // MAKING QUERY TO GET DATA FROM OUR DATABASE
+        $result = mysqli_query($conn, $query); // PERFORM A QUERY IN THE DATABASE
+        $records = mysqli_num_rows($result); //GET THE NUMBER OF ROWS IN A RESULT
+
+
+       ?>
         <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Movie</th>
-            <th scope="col">Director</th>
-            <th scope="col">Revenue(USD)</th>
+            <th>Name</th>
+            <th>Market Value</th>
+            <th>Position</th>
+            <th>Club</th>
             <th>Action</th>
-        </tr>
         </thead>
         <tbody>
-        <?php
-//        echo "time to check the if condition";
-            if(!empty($records)){
-//                echo "-record is not empty";
+          <?php
+              if(!empty($records)){
+                // Fetch a result row as an associative array
                 while($row = mysqli_fetch_assoc($result)){
-                    ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['id']; ?></th>
-                            <td><?php echo $row['movie']; ?></td>
-                            <td><?php echo $row['director']; ?></td>
-                            <td><?php echo $row['revenue']; ?>m</td>
-                            <td>
-                                <a href="/php-sql-crud/add.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
-                                <a href="/php-sql-crud/delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                    <?php
+                  ?>
+                  <!-- WHIRE HTML HERE -->
+                  <tr>
+                      <td><?php echo htmlspecialchars( $row['name']); ?></td>
+                      <td><?php echo htmlspecialchars($row['market_value']); ?></td>
+                      <td><?php echo htmlspecialchars($row['position']) ; ?></td>
+                      <td><?php echo htmlspecialchars( $row['club']); ?></td>
+                      <td>
+                        <a href="add.php?id=<?php echo $row['id']; ?>" type="button" name="edit" class="btn btn-primary d-inline">Edit</a>
+                        <form class="d-inline" action="delete.php" method="post">
+                            <input type="hidden" name="id" value="<?php $row['id']; ?>">
+                            <input type="submit" name="delete" value="Delete" class="btn btn-danger d-inline">
+                        </form>
+                      </td>
+                  </tr>
+                  <?php
                 }
-            }
-        ?>
+              }
+           ?>
+            <!-- <tr>
+                <td>Erling Haaland</td>
+                <td>120</td>
+                <td>Forward</td>
+                <td>Borussia Dortmund</td>
+            </tr> -->
         </tbody>
     </table>
 </div>
 
-
-
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+<?php include_once "partials/footer.php" ?>
