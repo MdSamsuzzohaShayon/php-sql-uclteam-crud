@@ -1,19 +1,22 @@
 <?php
-require_once 'config/db.php';
-if(isset($_POST['delete'])){
-  // $player_id = (!empty($_POST['id']))? !empty($_POST['id']) : '';
-  // $player_id = $_POST['id'];
-  echo "<div class='bg-dark text-white'>Delete button has been pressed</div>";
-  $player_id = (!empty($_POST['id'])) ? $_POST['id'] : '';
+include "includes/db.php";
+$id = $_GET['id'];
 
-  echo "<div class='bg-dark text-white'>$player_id</div>";
+$sql_delete = "delete from reg where id=$id";
+$query = mysqli_query($conn, $sql_delete);
 
-
-  $query = "DELETE FROM player WHERE id='$player_id'";
-  $result2 = mysqli_query($conn, $query);
-  if($result2){
-    header('Location: index.php?deleted=success');
-    echo "Deleted successfully";
-  }
+if ($query) {
+?>
+    <script>
+        console.log("Deleted successfull");
+    </script>
+<?php
+header("Location: index.php?msg=deleted_one_item");
+} else {
+?>
+    <script>
+        console.log("Not Deleted");
+    </script>
+<?php
 }
- ?>
+?>
